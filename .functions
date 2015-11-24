@@ -265,3 +265,47 @@ function psqlmakeowner() {
 	fi;
 }
 
+
+# notes
+# args:
+# * add [title]
+# * edit
+# if no argument is provided a list of the notes from $NOTES_DIR will be displayed to view.
+# you need to export $NOTES_DIR in you environment to use this
+function notes() {
+	QUIT="!Quit"
+	touch $NOTES_DIR/$QUIT
+	LIST="$(ls $NOTES_DIR/)"
+	if [ "$1" == "add" ]; then
+		if [ $# -eq 2 ]; then
+			vim $NOTES_DIR/$2
+		else
+			echo -n "Note Title: ";
+			read NOTETITLE;
+			vim $NOTES_DIR/$NOTETITLE;
+		fi;
+	else
+		echo Type the number of the note. Type 1 to quit.
+		select FILENAME in $LIST;
+		do
+			case $FILENAME in
+				"$QUIT")
+					echo Done!
+					break
+					;;
+				*)
+					if [ "$1" == "edit" ]; then
+						vim $NOTES_DIR/$FILENAME
+						break
+					else
+						cat $NOTES_DIR/$FILENAME
+					fi;
+					echo
+					echo Type the number of the note you would like to view. Type 1 to quit.
+					;;
+			esac
+		done
+	fi;
+	rm $NOTES_DIR/$QUIT
+}
+
