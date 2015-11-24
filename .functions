@@ -285,7 +285,8 @@ function notes() {
 			vim $NOTES_DIR/$NOTETITLE;
 		fi;
 	else
-		echo Type the number of the note. Type 1 to quit.
+		NOTEMESSAGE="Type the number of the note. Type 1 to quit"
+		echo $NOTEMESSAGE
 		select FILENAME in $LIST;
 		do
 			case $FILENAME in
@@ -293,19 +294,76 @@ function notes() {
 					echo Done!
 					break
 					;;
-				*)
+				$LIST)
 					if [ "$1" == "edit" ]; then
 						vim $NOTES_DIR/$FILENAME
 						break
 					else
 						cat $NOTES_DIR/$FILENAME
 					fi;
-					echo
-					echo Type the number of the note you would like to view. Type 1 to quit.
+					echo $NOTEMESSAGE
+					echo.
 					;;
+				*)
+					echo Invalid choice.
+					echo $NOTEMESSAGE
+
 			esac
 		done
 	fi;
 	rm $NOTES_DIR/$QUIT
 }
 
+# function dumpremotedb() {
+# 	echo "Select a database type :";
+# 	dboptions=("MySQL" "PostgreSQL");
+# 	select db_type in "${dboptions[@]}"
+# 	do
+# 		case $db_type in
+# 			"MySQL")
+# 				echo "you choose MySQL"
+# 				break
+# 				;;
+# 			"PostgreSQL")
+# 				echo "you choose PostgreSQL"
+# 				break
+# 				;;
+# 			*) echo "Invalid Option";;
+# 		esac
+# 	done
+# 	echo
+# 	echo "Enter server : server[.hzdesign.com] :"
+# 	read servername
+# 	echo "Servername is $servername.hzdesign.com";
+# 	echo
+# 	echo -n "Enter name of database :"
+# 	read dbname
+# 	echo "Database name is $dbname"
+# 	echo
+# 	echo "Enter a file path for database dump. default is ./$dbname.sql"
+# 	read localfile
+# 	echo "Local file is ${localfile:-./$dbname}.sql"
+# 	if [ "$db_type" == "MySQL" ]; then
+# 		echo "Enter database username :"
+# 		read username
+# 		echo "Username is $username"
+# 		echo "Enter database password :"
+# 		read password
+# 		echo "Password is $password"
+# 		echo
+# 		echo "Dumping $dbname from $servername.hzdesign.com to ${localfile:-./$dbname}.sql"
+# 		ssh $USER@$servername.hzdesign.com '(  mysqldump -u$username -p$password $dbname )' > ${localfile:-./$dbname}.sql
+# 		echo
+# 		echo "Done!"
+# 		echo "To load the database run :"
+# 		echo "$ mysql -u$username -p$password $dbname < ${localfile:-./$dbname}.sql"
+# 	else
+# 		echo
+# 		echo "Dumping $dbname from $servername.hzdesign.com to ${localfile:-./$dbname}.sql"
+# 		ssh $servername.hzdesign.com '(  pg_dump $dbname )' > ${localfile:-./$dbname}.sql;
+# 		echo
+# 		echo "Done!"
+# 		echo "To load the database run :"
+# 		echo "$ psql $dbname < ${localfile:-./$dbname}.sql"
+# 	fi;
+# }
