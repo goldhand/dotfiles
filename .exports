@@ -35,3 +35,6 @@ export PROJECT_HOME=$HOME/projects
 
 # Path for notes
 export NOTES_DIR=$HOME/notes
+
+# Set django configurations default to Local
+export DJANGO_CONFIGURATION=Local
