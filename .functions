@@ -244,3 +244,24 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+# in order to use a postgres database with django a user will need these permissions
+function psqlmakeowner() {
+	if [ $# -eq 1 ]; then
+		psql $1 -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to $1;"
+		psql $1 -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to $1;"
+		psql $1 -c "GRANT ALL ON ALL TABLES IN SCHEMA public to $1;"
+		echo "GRANTED ALL $1 SEQUENCES, FUNCTIONS AND TABLES to $1"
+	else
+		if [ $# -eq 2 ]; then
+			psql $1 -c "GRANT ALL ON ALL SEQUENCES IN SCHEMA public to $2;"
+			psql $1 -c "GRANT ALL ON ALL FUNCTIONS IN SCHEMA public to $2;"
+			psql $1 -c "GRANT ALL ON ALL TABLES IN SCHEMA public to $2;"
+			echo "GRANTED ALL $1 SEQUENCES, FUNCTIONS AND TABLES to $2"
+		else
+			echo "psqlmakeowner <table> <user>";
+			echo "psqlmakeowner <table/user>  # if user and table names are the same";
+		fi;
+	fi;
+}
+
