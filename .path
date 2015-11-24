@@ -1,0 +1,7 @@
+PATH=./node_modules/.bin:~/bin:~/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+PATH=/usr/local/share/npm/bin:$PATH
+PATH=/Users/$USER/.npm:$PATH
+PATH=/usr/local/share/python:$PATH
+PATH=/Users/$USER/.local/bin:$PATH
+
+export PATH
