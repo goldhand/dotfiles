@@ -294,20 +294,16 @@ function notes() {
 					echo Done!
 					break
 					;;
-				$LIST)
+				*)
 					if [ "$1" == "edit" ]; then
 						vim $NOTES_DIR/$FILENAME
 						break
 					else
 						cat $NOTES_DIR/$FILENAME
 					fi;
-					echo $NOTEMESSAGE
-					echo.
+					echo; echo
+					break
 					;;
-				*)
-					echo Invalid choice.
-					echo $NOTEMESSAGE
-
 			esac
 		done
 	fi;
