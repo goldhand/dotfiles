@@ -310,6 +310,46 @@ function notes() {
 	rm $NOTES_DIR/$QUIT
 }
 
+
+function mkcomponent() {
+
+	# makes a new react component
+	APP_NAME=$1;
+
+	# COMPONENTS_DIR is the relative path to react components to your project root
+	if [ "$COMPONENTS_DIR" == "" ]; then
+		COMPONENTS_DIR=./src/components;
+	fi;
+
+	read -d '' PACKAGE_FILE <<- EOF
+	{
+	  "name": "$APP_NAME",
+	  "version": "0.0.0",
+	  "private": true,
+	  "main": "./$APP_NAME.js"
+	}
+	EOF
+
+	read -d '' STYLE_FILE <<- EOF
+	@import '../base.less';
+	EOF
+
+	read -d '' COMPONENT_FILE <<- EOF
+	import React from 'react';
+	EOF
+
+	main() {
+	    mkdir "$COMPONENTS_DIR/$APP_NAME";
+	    echo "$PACKAGE_FILE" >> "$COMPONENTS_DIR/$APP_NAME/package.json";
+	    echo "$STYLE_FILE" >> "$COMPONENTS_DIR/$APP_NAME/$APP_NAME.less";
+	    echo "$COMPONENT_FILE" >> "$COMPONENTS_DIR/$APP_NAME/$APP_NAME.js";
+	}
+
+	main;
+
+}
+
+
 # function dumpremotedb() {
 # 	echo "Select a database type :";
 # 	dboptions=("MySQL" "PostgreSQL");
