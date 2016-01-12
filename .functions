@@ -336,6 +336,34 @@ function mkcomponent() {
 
 	read -d '' COMPONENT_FILE <<- EOF
 	import React from 'react';
+	import './$APP_NAME.less';
+
+
+	const {PropTypes} = React;
+
+	export default class $APP_NAME extends React.Component {
+
+	  static contextTypes = {
+	    store: PropTypes.object,
+	  }
+	  componentDidMount() {
+	    this.unsubscribe = this.context.store.subscribe(() => {
+	      this.forceUpdate();
+	    });
+	  }
+	  componentWillUnmount() {
+	    this.unsubscribe();
+	  }
+
+	  render = () => {
+	    const {store} = this.context,
+	      state = store.getState();
+
+	    return (
+
+	    )
+	  }
+	}
 	EOF
 
 	main() {
