@@ -147,3 +147,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+# Make a python3 project *make sure virtualenv is updated
+alias mkproject3="mkproject -p `which python3`"

@@ -33,6 +33,9 @@ export WORKON_HOME=$HOME/.envs
 # Python virtualenvwrapper projects directory
 export PROJECT_HOME=$HOME/projects
 
+# Set virtualenv python to system python
+export VIRTUALENVWRAPPER_PYTHON=`which python`
+
 # Path for notes
 export NOTES_DIR=$HOME/notes
 
