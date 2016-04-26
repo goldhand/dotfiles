@@ -8,10 +8,10 @@
 	st = status -s  # habit
 
 	# commit
-	c = commit -m
+	ci = commit
 
 	# commit with message
-	ci = commit -m
+	c = commit -m
 
 	# signed commit
 	cs = commit -m -S
@@ -140,10 +140,6 @@
 	# https://help.github.com/articles/signing-commits-using-gpg/
 	# gpgsign = true  # will sign all commits
 
-[tag]
-	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true  # sign tags
-
 [diff]
 
 	# Detect copies as well as renames
@@ -172,6 +168,8 @@
 	default = matching
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
+	# makes all pushes signed if --signed is passed
+	gpgSign = if-asked
 
 # URL shorthands
 
@@ -194,3 +192,7 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+[user]
+	name = Will Farley
+	email = willf@hzdg.com
