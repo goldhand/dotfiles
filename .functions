@@ -296,7 +296,7 @@ function notes() {
 		else
 			echo -n "Note Title: ";
 			read NOTETITLE;
-			vim $NOTES_DIR/$NOTETITLE;
+			vim $NOTES_DIR/$NOTETITLE.md;
 		fi;
 	else
 		NOTEMESSAGE="Type the number of the note. Type 1 to quit"
@@ -310,7 +310,7 @@ function notes() {
 					;;
 				*)
 					if [ "$1" == "edit" ]; then
-						vim $NOTES_DIR/$FILENAME
+						vim $NOTES_DIR/$FILENAME.md
 						break
 					else
 						cat $NOTES_DIR/$FILENAME
