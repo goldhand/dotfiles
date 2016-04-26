@@ -7,8 +7,14 @@
 	s = status -s
 	st = status -s  # habit
 
+	# commit
+	c = commit -m
+
 	# commit with message
 	ci = commit -m
+
+	# signed commit
+	cs = commit -m -S
 
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
@@ -20,7 +26,7 @@
 	p = !"git pull; git submodule foreach git pull origin master"
 
 	# Clone a repository including all submodules
-	c = clone --recursive
+	cr = clone --recursive
 
 	# Commit all changes
 	ca = !git add -A && git commit -av
@@ -132,7 +138,11 @@
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	# gpgsign = true  # will sign all commits
+
+[tag]
+	# https://help.github.com/articles/signing-commits-using-gpg/
+	gpgsign = true  # sign tags
 
 [diff]
 
