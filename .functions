@@ -266,51 +266,93 @@ function psqlmakeowner() {
 }
 
 function mysqlmake() {
-	#create database
+	# create database
 	mysql -uroot -e "CREATE DATABASE $1";
 
-	#create user
+	# create user
 	mysql -uroot -e "CREATE USER '$1'@'127.0.0.1' IDENTIFIED BY 'password'";
 
-	#grant permission to user
+	# grant permission to user
 	mysql -uroot -e  "GRANT ALL ON $1.* TO '$1'@'127.0.0.1'";
 }
 function mysqlmakeowner() {
-	#grant permission to user
+	# grant permission to user
 	mysql -uroot -e  "GRANT ALL ON $1.* TO '$1'@'127.0.0.1'";
 }
 
 # notes
 # args:
-# * add [title]
-# * edit
+# * -a [title]
+# * -e
 # if no argument is provided a list of the notes from $NOTES_DIR will be displayed to view.
 # you need to export $NOTES_DIR in you environment to use this
 function notes() {
+
+	usage="notes [-a <filename>, -e] -- create, edit, or view a note
+
+	default is to read notes, don't pass any args
+
+	where
+		-h		Show this help text
+		-a <filename>	Add a new note called filename.md
+		-e		Edit a note (you will be prompted with the note list)"
+
+
+	# reset variables
+	OPTIND=1;
+	unset NOTES_LIST;
+	unset NOTES_OPT;
+	unset NOTETITLE;
+
+	while getopts ":a:eh" opt; do
+	  case $opt in
+	    h)
+	      echo "$usage"
+	      return
+	      ;;
+	    a)
+	      NOTETITLE=$OPTARG
+				NOTES_OPT="a";
+	      echo "Creating new note called $NOTETITLE"
+	      ;;
+	    e)
+				NOTES_OPT="e";
+	      echo "Edit a note" >&2
+	      ;;
+	    \?)
+	      printf "Invalid option -%s\n" "$OPTARG" >&2
+	      echo "$usage" >&2
+	      return
+	      ;;
+			:)
+				echo "Need a valid note name" >&2
+				echo "$usage" >&2
+				return
+				;;
+	  esac
+	done
+
+  # remove all options parsed by getopts so next input is $1
+	shift "$((OPTIND-1))";
+
 	QUIT="!Quit"
 	touch $NOTES_DIR/$QUIT
-	LIST="$(ls $NOTES_DIR/)"
-	if [ "$1" == "add" ]; then
-		if [ $# -eq 2 ]; then
-			vim $NOTES_DIR/$2
-		else
-			echo -n "Note Title: ";
-			read NOTETITLE;
-			vim $NOTES_DIR/$NOTETITLE.md;
-		fi;
+	NOTE_LIST="$(ls $NOTES_DIR/)"
+
+	if [ "$NOTES_OPT" == "a" ]; then
+		$NOTES_EDITOR $NOTES_DIR/$NOTETITLE.md;
 	else
 		NOTEMESSAGE="Type the number of the note. Type 1 to quit"
 		echo $NOTEMESSAGE
-		select FILENAME in $LIST;
+		select FILENAME in $NOTE_LIST;
 		do
 			case $FILENAME in
 				"$QUIT")
-					echo Done!
 					break
 					;;
 				*)
-					if [ "$1" == "edit" ]; then
-						vim $NOTES_DIR/$FILENAME.md
+					if [ "$NOTES_OPT" == "e" ]; then
+						$NOTES_EDITOR $NOTES_DIR/$FILENAME
 						break
 					else
 						cat $NOTES_DIR/$FILENAME
@@ -449,6 +491,7 @@ function mkcomponent() {
 	      echo "$REDUX_COMPONENT_FILE" >> "$COMPONENTS_DIR/$APP_NAME/$APP_NAME.js";
 	    fi
 	fi;
+	OPTIND=1
 
 }
 

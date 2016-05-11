@@ -37,7 +37,10 @@ export PROJECT_HOME=$HOME/projects
 export VIRTUALENVWRAPPER_PYTHON=`which python`
 
 # Path for notes
-export NOTES_DIR=$HOME/notes
+export NOTES_DIR=$HOME/notes/notes
+
+# Text editor for notes
+export NOTES_EDITOR=atom
 
 # Set django configurations default to Local
 export DJANGO_CONFIGURATION=Local
