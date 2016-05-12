@@ -284,11 +284,12 @@ function mysqlmakeowner() {
 # args:
 # * -a [title]
 # * -e
+# * -p
 # if no argument is provided a list of the notes from $NOTES_DIR will be displayed to view.
 # you need to export $NOTES_DIR in you environment to use this
 function notes() {
 
-	usage="notes [-a <filename>, -e] -- create, edit, or view a note
+	usage="notes [-a <filename>, -e, -p] -- create, edit, publish or view a note
 
 	default is to read notes, don't pass any args
 
@@ -296,6 +297,7 @@ function notes() {
 		-h		Show this help text
 		-a <filename>	Add a new note called filename.md
 		-e		Edit a note (you will be prompted with the note list)"
+		-p		Publish notes to github
 
 
 	# reset variables
@@ -303,37 +305,66 @@ function notes() {
 	unset NOTES_LIST;
 	unset NOTES_OPT;
 	unset NOTETITLE;
+	unset CONFIRM_PUBLISH;
+	unset COMMIT_MSG;
 
-	while getopts ":a:eh" opt; do
+	while getopts ":a:eph" opt; do
 	  case $opt in
-	    h)
-	      echo "$usage"
-	      return
-	      ;;
-	    a)
-	      NOTETITLE=$OPTARG
+			h)
+				echo "$usage"
+				return
+				;;
+			a)
 				NOTES_OPT="a";
-	      echo "Creating new note called $NOTETITLE"
-	      ;;
-	    e)
+				NOTETITLE=$OPTARG
+				echo "Creating new note called $NOTETITLE"
+				;;
+			e)
 				NOTES_OPT="e";
-	      echo "Edit a note" >&2
-	      ;;
-	    \?)
-	      printf "Invalid option -%s\n" "$OPTARG" >&2
-	      echo "$usage" >&2
-	      return
-	      ;;
+				echo "Edit a note" >&2
+				;;
+			p)
+				NOTES_OPT="p";
+				echo "confirm publish all notes [y/N]: ";
+				read CONFIRM_PUBLISH
+				;;
+			\?)
+				printf "Invalid option -%s\n" "$OPTARG" >&2
+				echo "$usage" >&2
+				return
+				;;
 			:)
 				echo "Need a valid note name" >&2
 				echo "$usage" >&2
 				return
 				;;
-	  esac
+			esac
 	done
 
   # remove all options parsed by getopts so next input is $1
 	shift "$((OPTIND-1))";
+
+	# check if publish option was given
+	if [ "$NOTES_OPT" == "p" ]; then
+		echo; echo
+		if [ "$CONFIRM_PUBLISH" == "y" ]; then
+			echo "Publishing Notes..."
+			(
+				cd $NOTES_DIR
+				COMMIT_MSG=$(git status -s)
+				git add .
+				git commit -F- <<EOF
+Update notes
+
+$COMMIT_MSG
+EOF
+				git push origin master
+			)
+		else
+			echo "Not Publishing, rerun and confirm with 'y' if you want to publish";
+		fi;
+		return;
+	fi;
 
 	QUIT="!Quit"
 	touch $NOTES_DIR/$QUIT
