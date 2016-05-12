@@ -156,3 +156,6 @@ alias isortproject="isort -rc --atomic"
 
 # Copy all the dotfiles I use into the home directory
 alias updatedotfiles="cp -r ~/tools/dotfiles/{.aliases,.bash_profile,.bash_prompt,.bashrc,.curlrc,.editorconfig,.exports,.functions,.gitattributes,.gitconfig,.inputrc,.path,.vimrc,.wgetrc,.curlrc,.vim} ~ && source ~/.bashrc"
+
+# Java bfg
+alias bfg="java -jar $HOME/tools/bfg-1.12.12.jar"
