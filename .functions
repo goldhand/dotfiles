@@ -296,8 +296,8 @@ function notes() {
 	where
 		-h		Show this help text
 		-a <filename>	Add a new note called filename.md
-		-e		Edit a note (you will be prompted with the note list)"
-		-p		Publish notes to github
+		-e		Edit a note (you will be prompted with the note list)
+		-p		Publish notes to github"
 
 
 	# reset variables
