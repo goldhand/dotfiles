@@ -308,6 +308,11 @@ function notes() {
 	unset CONFIRM_PUBLISH;
 	unset COMMIT_MSG;
 
+	if [ -z ${NOTES_EDITOR+x} ]; then
+		# Use default editor if none specified
+		NOTES_EDITOR=$EDITOR;
+	fi;
+
 	while getopts ":a:eph" opt; do
 	  case $opt in
 			h)
@@ -371,7 +376,7 @@ EOF
 	NOTE_LIST="$(ls $NOTES_DIR/)"
 
 	if [ "$NOTES_OPT" == "a" ]; then
-		$NOTES_EDITOR $NOTES_DIR/$NOTETITLE.md;
+		$NOTES_EDITOR "$NOTES_DIR/$NOTETITLE.md";
 	else
 		NOTEMESSAGE="Type the number of the note. Type 1 to quit"
 		echo $NOTEMESSAGE
@@ -383,10 +388,10 @@ EOF
 					;;
 				*)
 					if [ "$NOTES_OPT" == "e" ]; then
-						$NOTES_EDITOR $NOTES_DIR/$FILENAME
+						$NOTES_EDITOR "$NOTES_DIR/$FILENAME"
 						break
 					else
-						cat $NOTES_DIR/$FILENAME
+						cat "$NOTES_DIR/$FILENAME"
 					fi;
 					echo; echo
 					break
