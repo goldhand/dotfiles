@@ -50,3 +50,6 @@ export COMPONENTS_DIR=./src/components
 
 # NVM Directory
 export NVM_DIR="/Users/waf/.nvm"
+
+# APM List File for listing apm packages
+export APM_LIST_FILE="$HOME/.atom/atom-package-list.txt"
