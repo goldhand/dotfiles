@@ -28,7 +28,7 @@ export LESS_TERMCAP_md="${yellow}";
 export MANPAGER='less -X';
 
 # Python virtualenvwrapper virtualenvs directory
-export WORKON_HOME=$HOME/.envs
+export WORKON_HOME=$HOME/.virtualenvs
 
 # Python virtualenvwrapper projects directory
 export PROJECT_HOME=$HOME/projects
