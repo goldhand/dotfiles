@@ -2,5 +2,6 @@ PATH=./node_modules/.bin:~/bin:~/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/b
 PATH=/usr/local/share/npm/bin:$PATH
 PATH=/Users/$USER/.npm:$PATH
 PATH=/Users/$USER/.local/bin:$PATH
+PATH=$PATH:/usr/local/lib/node_modules
 
 export PATH

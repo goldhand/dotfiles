@@ -49,7 +49,7 @@ export DJANGO_CONFIGURATION=Local
 export COMPONENTS_DIR=./src/components
 
 # NVM Directory
-export NVM_DIR="/Users/waf/.nvm"
+export NVM_DIR="/Users/$USER/.nvm"
 
 # APM List File for listing apm packages
 export APM_LIST_FILE="$HOME/.atom/atom-package-list.txt"
