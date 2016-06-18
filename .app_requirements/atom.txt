@@ -1,0 +1,12 @@
+atom-beautify@0.29.7
+auto-detect-indentation@1.0.0
+linter@1.11.4
+linter-eslint@7.2.2
+linter-flake8@1.13.0
+symbols-view@0.113.0
+todo-show@1.6.0
+vim-mode-plus@0.42.0
+vim-mode-plus-ex-mode@0.2.0
+vim-mode-plus-move-selected-text@0.6.0
+vim-mode-plus-move-to-symbols@0.1.5
+vim-mode-plus-subword-movement@0.2.2

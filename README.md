@@ -1,4 +1,36 @@
-# Mathias’s dotfiles
+# Will’s dotfiles [formally, Mathias' dotfiles]
+
+## Introduction by @goldhand
+This is my fork of [@mathiasbynens dotfiles](https://github.com/mathiasbynens/dotfiles)
+
+## @goldhands notes
+
+### Installation (@goldhand)
+
+I don't use the install methods below, I don't know what all of these dotfiles do so I only want ones I understand :smile:
+
+I run alias that installs the dotfiles I want:
+
+```shell
+$ updatedotfiles
+```
+
+Atom package install:
+
+```shell
+$ updateapmlist
+```
+
+Downloading Apm package list
+https://gist.githubusercontent.com/goldhand/f560274f407bf0b43bb63dfc986c7406/raw/fbe5d90c64d914c4c6f073cc4523fa254b4a1b04/atom-package-list.txt
+
+Note Taking:
+
+```shell
+$ notes -h
+```
+
+
 
 ![Screenshot of my shell prompt](http://i.imgur.com/EkEtphC.png)
 

@@ -52,4 +52,4 @@ export COMPONENTS_DIR=./src/components
 export NVM_DIR="/Users/$USER/.nvm"
 
 # APM List File for listing apm packages
-export APM_LIST_FILE="$HOME/.atom/atom-package-list.txt"
+export APM_LIST_FILE="$HOME/.app_requirements/atom.txt"
