@@ -170,3 +170,9 @@ alias updateapmlist="apm list --installed --bare > $APM_LIST_FILE && cat $APM_LI
 alias bb="brazil-build"
 
 alias bbb="brazil-recursive-cmd --allPackages brazil-build"
+
+# Connect to backup server
+alias mount_backup_server="mount -t smbfs //wfarley@ant.amazon.com/home/sea/009/wfarley ./backup/"
+
+# Backup rsync shortcut
+alias rsync_backup="rsync -trv"
