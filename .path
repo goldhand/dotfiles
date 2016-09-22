@@ -3,5 +3,7 @@ PATH=/usr/local/share/npm/bin:$PATH
 PATH=/Users/$USER/.npm:$PATH
 PATH=/Users/$USER/.local/bin:$PATH
 PATH=$PATH:/usr/local/lib/node_modules
+PATH=/apollo/env/SDETools/bin:$PATH
+PATH=/Users/$USER/tools/VnctScripts/bin:$PATH
 
 export PATH

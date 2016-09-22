@@ -160,5 +160,13 @@ alias updatedotfiles="cp -r ~/tools/dotfiles/{.aliases,.app_requirements,.bash_p
 # Install apm packages list
 alias installapmpackages="apm install --packages-file $APM_LIST_FILE"
 
-# Save apm packages list
+# Save a-bpm packages list
 alias updateapmlist="apm list --installed --bare > $APM_LIST_FILE && cat $APM_LIST_FILE"
+
+
+### Amazon ###
+
+# Brazil-build
+alias bb="brazil-build"
+
+alias bbb="brazil-recursive-cmd --allPackages brazil-build"
