@@ -58,4 +58,3 @@ export APM_LIST_FILE="$HOME/.app_requirements/atom.txt"
 # https://w.amazon.com/index.php/NodeJS/Documentation/UsingNodeJSAtAmazon#Running_Brazil_Node_Scripts_on_OS_X
 export NODE_BINARY_PATH=/Users/wfarley/.nvm/versions/node/v0.12.15/bin/node
 export I_WANT_NO_DEVTOOLS_SUPPORT_NOW_AND_FOREVER=NODE_BINARY_PATH
-
