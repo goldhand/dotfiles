@@ -175,7 +175,7 @@
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 	# makes all pushes signed if --signed is passed
-	gpgSign = if-asked
+	# gpgSign = if-asked
 
 # URL shorthands
 
