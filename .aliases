@@ -176,3 +176,5 @@ alias mount_backup_server="mount -t smbfs //wfarley@ant.amazon.com/home/sea/009/
 
 # Backup rsync shortcut
 alias rsync_backup="rsync -trv"
+
+alias pr="post-review -o -u aplus-mantle --summary="

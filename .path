@@ -1,9 +1,15 @@
+PATH=/Users/$USER/.local/bin:$PATH
+# npm
+GLOBAL_NODE_DIR=$(npm prefix -g)/lib/node_modules
+PATH=$GLOBAL_NODE_DIR:$PATH
 PATH=./node_modules/.bin:~/bin:~/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 PATH=/usr/local/share/npm/bin:$PATH
 PATH=/Users/$USER/.npm:$PATH
-PATH=/Users/$USER/.local/bin:$PATH
 PATH=$PATH:/usr/local/lib/node_modules
+# amazon
 PATH=/apollo/env/SDETools/bin:$PATH
 PATH=/Users/$USER/tools/VnctScripts/bin:$PATH
+PATH=/apollo/sbin:$PATH
+PATH=$BRAZIL_CLI_BIN:$PATH
 
 export PATH
