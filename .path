@@ -1,7 +1,7 @@
 PATH=/Users/$USER/.local/bin:$PATH
 # npm
-GLOBAL_NODE_DIR=$(npm prefix -g)/lib/node_modules
-PATH=$GLOBAL_NODE_DIR:$PATH
+# GLOBAL_NODE_DIR=$(npm prefix -g)/lib/node_modules
+# PATH=$GLOBAL_NODE_DIR:$PATH
 PATH=./node_modules/.bin:~/bin:~/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 PATH=/usr/local/share/npm/bin:$PATH
 PATH=/Users/$USER/.npm:$PATH
