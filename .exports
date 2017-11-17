@@ -27,32 +27,20 @@ export LESS_TERMCAP_md="${yellow}";
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
 
-# Python virtualenvwrapper virtualenvs directory
-export WORKON_HOME=$HOME/.envs
-
-# Python virtualenvwrapper projects directory
-export PROJECT_HOME=$HOME/projects
-
-# Set virtualenv python to system python
-export VIRTUALENVWRAPPER_PYTHON=`which python`
-
 # Path for notes
 export NOTES_DIR=$HOME/notes/notes
 
 # Text editor for notes
 export NOTES_EDITOR=atom
 
-# Set django configurations default to Local
-export DJANGO_CONFIGURATION=Local
-
-# COMPONENTS_DIR is the relative path to react components to your project root
-export COMPONENTS_DIR=./src/components
-
 # NVM Directory
 export NVM_DIR="/Users/$USER/.nvm"
 
 # APM List File for listing apm packages
 export APM_LIST_FILE="$HOME/.app_requirements/atom.txt"
+
+# Dot files path
+export DOT_FILES_PATH="$HOME/tools/dotfiles"
 
 # Node/brazil hack
 # https://w.amazon.com/index.php/NodeJS/Documentation/UsingNodeJSAtAmazon#Running_Brazil_Node_Scripts_on_OS_X

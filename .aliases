@@ -11,7 +11,6 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias j="cd ~/js_projects"
-alias cdtools="cd ~/tools"
 alias g="git"
 alias h="history"
 
@@ -148,14 +147,14 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
-# Make a python3 project *make sure virtualenv is updated
-alias mkproject3="mkproject -p `which python3`"
-
 # Atomically run isort against a project, only applying changes if they don’t introduce syntax errors
 alias isortproject="isort -rc --atomic"
 
 # Copy all the dotfiles I use into the home directory
-alias updatedotfiles="cp -r ~/tools/dotfiles/{.aliases,.app_requirements,.bash_profile,.bash_prompt,.bashrc,.curlrc,.editorconfig,.exports,.functions,.gitattributes,.gitconfig,.gitignore,.inputrc,.path,.vimrc,.wgetrc,.curlrc,.vim} ~ && source ~/.bashrc"
+alias updatedotfiles="cp -r $DOT_FILES_PATH/{.aliases,.app_requirements,.bash_profile,.bash_prompt,.bashrc,.curlrc,.editorconfig,.exports,.functions,.gitattributes,.gitconfig,.gitignore,.inputrc,.path,.vimrc,.wgetrc,.curlrc,.vim} ~ && source ~/.bashrc"
+
+# Open editor to edit dotfiles
+alias editdotfiles="atom $DOT_FILES_PATH"
 
 # Install apm packages list
 alias installapmpackages="apm install --packages-file $APM_LIST_FILE"
@@ -178,3 +177,4 @@ alias mount_backup_server="mount -t smbfs //wfarley@ant.amazon.com/home/sea/009/
 alias rsync_backup="rsync -trv"
 
 alias pr="post-review -o -u aplus-mantle --summary="
+alias odin_tunnel='ssh -fNL 2009:localhost:2009 wfarley.aka.corp.amazon.com'
