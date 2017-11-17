@@ -22,6 +22,9 @@
 	# branch
 	br = branch
 
+  # undo the last $number of commits and leave in working tree
+  undo = !"reset --soft HEAD~$1"
+
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
@@ -159,7 +162,7 @@
 [help]
 
 	# Automatically correct and execute mistyped commands
-	autocorrect = 1
+	# autocorrect = 1
 
 [merge]
 
