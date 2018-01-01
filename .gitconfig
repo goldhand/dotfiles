@@ -205,8 +205,12 @@
 [user]
 	name = Will Farley
 	email = wfarley@amazon.com
+  signingkey = B653120B5AD1D743
 
 [amazon]
 	append-cr-url = true
 	pull-request-by-default = true
 	pull-request-using-local-branch-name = true
+
+[gpg]
+	program = gpg

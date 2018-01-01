@@ -1,4 +1,5 @@
 PATH=/Users/$USER/.local/bin:$PATH
+PATH=/usr/local/share:$PATH
 # npm
 # GLOBAL_NODE_DIR=$(npm prefix -g)/lib/node_modules
 # PATH=$GLOBAL_NODE_DIR:$PATH
@@ -6,10 +7,17 @@ PATH=./node_modules/.bin:~/bin:~/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/b
 PATH=/usr/local/share/npm/bin:$PATH
 PATH=/Users/$USER/.npm:$PATH
 PATH=$PATH:/usr/local/lib/node_modules
+# python
+PATH=/usr/local/share/python:$PATH
+PATH=/Users/$USER/.pyenv:$PATH
+eval "$(pyenv init -)"
 # amazon
 PATH=/apollo/env/SDETools/bin:$PATH
 PATH=/Users/$USER/tools/VnctScripts/bin:$PATH
 PATH=/apollo/sbin:$PATH
 PATH=$BRAZIL_CLI_BIN:$PATH
+PATH=$HOME/.toolbox/bin:$PATH
+# mos
+PATH=$PATH:/Users/$USER/.mos/bin
 
 export PATH

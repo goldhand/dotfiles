@@ -585,3 +585,20 @@ function mkcomponent() {
 # 		echo "$ psql $dbname < ${localfile:-./$dbname}.sql"
 # 	fi;
 # }
+
+# Permissions	Owner	Group	Others
+# chmod 777	rwx	rwx	rwx
+# chmod 666	rw-	rw-	rw-
+# chmod 555	r-x	r-x	r-x
+# chmod 444	r--	r--	r--
+# chmod 333	-wx	-wx	-wx
+# chmod 222	-w-	-w-	-w-
+# chmod 111	--x	--x	--x
+# chmod 000	---	---	---
+
+function chmodExecutable() {
+	chmod 755 "$@"
+};
+function chmodDefault() {
+	chmod 644 "$@"
+};
