@@ -5,7 +5,9 @@ auto-detect-indentation@1.3.0
 busy-signal@1.4.3
 docblockr@0.13.7
 editorconfig@2.2.2
+file-icons@2.1.17
 git-time-machine@1.5.9
+highlight-selected@0.13.1
 ide-flowtype@0.21.0
 intentions@1.1.5
 language-babel@2.84.0
@@ -17,10 +19,12 @@ linter-eslint@8.4.1
 linter-flake8@2.3.0
 linter-jsonlint@1.3.0
 linter-ui-default@1.7.1
+minimap@4.29.8
 nuclide@0.284.0
 nuclide-test-runner-jest@0.3.0
 oceanic-next@1.0.0
 pigments@0.40.2
+project-manager@3.3.5
 react@0.18.0
 symbols-view@0.118.2
 todo-show@2.2.0
