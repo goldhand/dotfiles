@@ -36,14 +36,18 @@ export NOTES_EDITOR=atom
 # NVM Directory
 export NVM_DIR="/Users/$USER/.nvm"
 
-# APM List File for listing apm packages
-export APM_LIST_FILE="$HOME/.app_requirements/atom.txt"
-
 # Dot files path
 export DOT_FILES_PATH="$HOME/tools/dotfiles"
+
+# APM List File for listing apm packages
+export APM_LIST_FILE="$DOT_FILES_PATH/.app_requirements/atom.txt"
 
 # Node/brazil hack
 # https://w.amazon.com/index.php/NodeJS/Documentation/UsingNodeJSAtAmazon#Running_Brazil_Node_Scripts_on_OS_X
 export NODE_BINARY_PATH=/Users/wfarley/.nvm/versions/node/v0.12.15/bin/node
 export I_WANT_NO_DEVTOOLS_SUPPORT_NOW_AND_FOREVER=NODE_BINARY_PATH
 export NODE_PATH=../../lib/commonjs:../../node_modules:../../node_modules/npm/node_modules:$NODE_PATH
+
+# Amazon team member aliases (for cr mostly)
+export APLUS_PEOPLE="pchangs,cwtai"
+export SSPAA_PEOPLE="vainam,jdkilby"
