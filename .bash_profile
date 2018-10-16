@@ -7,6 +7,10 @@ export PATH="$HOME/bin:$PATH";
 for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
+# Shell dot files for shell utilities
+for file in $(ls ~/.bash_utils); do
+	[ -r ~/.bash_utils/$file ] && [ -f ~/.bash_utils/$file ] && source ~/.bash_utils/$file;
+done;
 unset file;
 
 # Case-insensitive globbing (used in pathname expansion)

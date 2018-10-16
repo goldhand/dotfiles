@@ -1,0 +1,43 @@
+
+
+function commitws() {
+
+  usage="notes [-a <filename>, -e, -p] -- create, edit, publish or view a note
+
+  default is to read notes, don't pass any args
+
+  where
+    -h    Show this help text
+    -a <filename>  Add a new note called filename.md
+    -e    Edit a note (you will be prompted with the note list)
+    -p    Publish notes to github"
+
+
+  WS_COMMIT_MSG="$@";
+  WS_SOURCE_DIR="$(pwd)";
+  WS_PACKAGE_LIST="$(ls $WS_SOURCE_DIR)";
+
+  echo "committing changes in:
+$WS_PACKAGE_LIST
+";
+
+  for PACKAGE in $WS_PACKAGE_LIST; do
+    # [ -r "$PACKAGE" ] && [ -f "$PACKAGE" ] && source "$PACKAGE";
+    (
+      cd $WS_SOURCE_DIR/$PACKAGE
+      echo "committing $PACKAGE with message \"$WS_COMMIT_MSG\""
+      git add .
+      git commit -F- <<EOF
+$WS_COMMIT_MSG
+
+EOF
+      echo; echo
+    )
+  done;
+
+  # reset variables
+  unset WS_COMMIT_MSG;
+  unset WS_SOURCE_DIR;
+  unset PACKAGE;
+  unset WS_PACKAGE_LIST;
+}
