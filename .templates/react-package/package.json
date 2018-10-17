@@ -1,0 +1,14 @@
+{
+  "name": "package-name",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib",
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "build": "babel ./src -d ./lib --ignore spec.js --source-maps --copy-files",
+    "lint": "eslint ./src"
+  },
+  "keywords": [],
+  "author": "Will Farley <a.will.farley@gmail.com> (http://www.willfarley.org/)",
+  "license": "MIT"
+}

@@ -1,0 +1,23 @@
+
+function react-package() {
+
+  usage="react-package <usage>
+
+  default is to read notes, don't pass any args
+
+  where
+    -h    Show this help text
+    -a <filename>  Add a new note called filename.md
+    -e    Edit a note (you will be prompted with the note list)
+    -p    Publish notes to github"
+
+
+  # ARGS="$@";
+
+  # Copy template files
+  cp -r $HOME/.templates/react-package/ ./
+
+  # setup npm
+  npm install --save-dev eslint eslint-plugin-jsx-a11y eslint-plugin-react babel-eslint react react-dom @babel/core @babel/cli @babel/preset-env @babel/preset-react @babel/plugin-transform-runtime webpack webpack-cli webpack-dev-server style-loader css-loader babel-loader
+  npm install --save react-hot-loader @babel/runtime
+}
