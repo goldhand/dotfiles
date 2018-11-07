@@ -21,6 +21,39 @@ function mkd() {
 	mkdir -p "$@" && cd "$_";
 }
 
+# Create file in a nested directory
+function touchp() {
+  # `dirname "$@"` = path, `basename "$@"` = filename
+  mkdir -p `dirname "$@"` && touch "$@";
+}
+
+# Create a file in a nested directory and cd into it
+function touchdp() {
+  mkdir -p `dirname "$@"` && touch "$@" && cd `dirname "$@"`;
+}
+
+function touche() {
+	local usage="touche filepath [executable] -- Create an executable file at filepath
+
+	Default is to create a \"#!/usr/bin/env bash\" executable when only one
+	argument (filepath) is given. The second argument (executable) is optional
+	and will change the the \"bash\" value in \"#!/usr/bin/env bash\".
+
+	Options
+		filepath	Executable file created at filepath (mkdir -p)
+		[executable]	Specify a different executable (default is \"bash\")";
+
+	if [[ "$#" -eq 0 ]] || [[ "$@" == "-h" ]] || [[ "$@" == "--help" ]]; then
+		echo "$usage";
+		return;
+	fi;
+	if [ "$#" -gt 1 ]; then
+		touchp "$1" && chmod +x "$1" && echo "#!/usr/bin/env ${2}" > "$1";
+	else
+		touchp "$@" && chmod +x "$@" && echo "#!/usr/bin/env bash" > "$@";
+	fi;
+}
+
 # Change working directory to the top-most Finder window location
 function cdf() { # short for `cdfinder`
 	cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
