@@ -43,6 +43,20 @@
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
+	# Creates a new git repo, adds everything, gives initial commit
+  i = !"git init; git add -A; git commit -m '🎉 Init'"
+
+	# Creates or checks into <branch $1> and commits with <message $2>
+	cib = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; git commit -m \"$2\"; }; f"
+
+	# Creates a WIP <branch WIP-$1> and commits with <message "[WIP]" $1>
+	save = "!f() { git checkout -b \"WIP-$1\" 2> /dev/null || git checkout \"WIP-$1\"; git add -A; git commit -m \"[WIP] $1\"; }; f"
+
+	# Opens a previously saved <branch WIP-$1> and resets last commit
+	load = "!f() { git checkout \"WIP-$1\"; git reset HEAD~; }; f"
+
+
+
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
 	branches = branch -a
