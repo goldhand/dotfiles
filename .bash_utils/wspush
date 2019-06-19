@@ -1,0 +1,28 @@
+
+
+function wspush() {
+
+  usage="wspush <commitmessage>";
+
+  WS_SOURCE_DIR="$(pwd)";
+  WS_PACKAGE_LIST="$(ls $WS_SOURCE_DIR)";
+
+  echo "pushing changes in:
+$WS_PACKAGE_LIST
+";
+
+  for PACKAGE in $WS_PACKAGE_LIST; do
+    # [ -r "$PACKAGE" ] && [ -f "$PACKAGE" ] && source "$PACKAGE";
+    (
+      cd $WS_SOURCE_DIR/$PACKAGE
+      echo "pushing $PACKAGE origin mainline"
+      git push
+      echo; echo
+    )
+  done;
+
+  # reset variables
+  unset WS_SOURCE_DIR;
+  unset PACKAGE;
+  unset WS_PACKAGE_LIST;
+}

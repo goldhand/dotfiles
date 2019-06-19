@@ -1,17 +1,8 @@
 
 
-function commitws() {
+function wscommit() {
 
-  usage="notes [-a <filename>, -e, -p] -- create, edit, publish or view a note
-
-  default is to read notes, don't pass any args
-
-  where
-    -h    Show this help text
-    -a <filename>  Add a new note called filename.md
-    -e    Edit a note (you will be prompted with the note list)
-    -p    Publish notes to github"
-
+  usage="wscommit <commitmessage>";
 
   WS_COMMIT_MSG="$@";
   WS_SOURCE_DIR="$(pwd)";

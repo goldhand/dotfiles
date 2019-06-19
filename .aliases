@@ -13,6 +13,8 @@ alias pr="cd ~/projects"
 alias ws="cd ~/workspace"
 alias g="git"
 alias h="history"
+alias mkp="mkdir -p"
+alias mkdirp="mkdir -p"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
