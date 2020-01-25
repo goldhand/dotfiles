@@ -8,9 +8,9 @@ PATH=/usr/local/share/npm/bin:$PATH
 PATH=/Users/$USER/.npm:$PATH
 PATH=$PATH:/usr/local/lib/node_modules
 # python
-PATH=/usr/local/share/python:$PATH
-PATH=/Users/$USER/.pyenv:$PATH
-eval "$(pyenv init -)"
+# PATH=/usr/local/share/python:$PATH
+# PATH=/Users/$USER/.pyenv:$PATH
+# eval "$(pyenv init -)"
 # amazon
 PATH=/apollo/env/SDETools/bin:$PATH
 PATH=/Users/$USER/tools/VnctScripts/bin:$PATH
