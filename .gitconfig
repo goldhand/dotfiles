@@ -109,6 +109,9 @@
 		fi \
 	}; f"
 
+	# set tracking branch
+	track = branch -u
+
 [apply]
 
 	# Detect whitespace errors when applying a patch
@@ -219,7 +222,6 @@
 [user]
 	name = Will Farley
 	email = wfarley@amazon.com
-  signingkey = B653120B5AD1D743
 
 [amazon]
 	append-cr-url = true
