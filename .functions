@@ -1,3 +1,11 @@
+function gify() {
+	filepath="$1"
+	filenamePath="${filepath%.*}"
+	gifpath=${3:-"$filenamePath".gif}
+	dimensions=${2:-"600x400"}
+	ffmpeg -i "$filepath" -s "$dimensions" -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > "$gifpath"
+}
+
 # Simple calculator
 function calc() {
 	local result="";
