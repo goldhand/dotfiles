@@ -11,6 +11,13 @@ export NODE_REPL_MODE='sloppy';
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
 
+# For compilers to find readline you may need to set:
+export LDFLAGS="-L/usr/local/opt/readline/lib"
+export CPPFLAGS="-I/usr/local/opt/readline/include"
+
+# For pkg-config to find readline you may need to set:
+export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
+
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';
 export HISTFILESIZE="${HISTSIZE}";
@@ -49,6 +56,9 @@ export APM_LIST_FILE="$DOT_FILES_PATH/.app_requirements/atom.txt"
 # verify gpg is working: $ echo "test" | gpg --clearsign
 # check existing keys: gpg --list-secret-keys --keyid-format LONG
 export GPG_TTY=$(tty)
+
+# Tmux / iterm integration
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 
 # Node/brazil hack
 # https://w.amazon.com/index.php/NodeJS/Documentation/UsingNodeJSAtAmazon#Running_Brazil_Node_Scripts_on_OS_X

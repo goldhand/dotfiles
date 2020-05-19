@@ -155,14 +155,16 @@ alias isortproject="isort -rc --atomic"
 # Copy all the dotfiles I use into the home directory
 alias updatedotfiles="cp -r $DOT_FILES_PATH/{.aliases,.bash_profile,.bash_prompt,.bash_utils,.bashrc,.curlrc,.editorconfig,.exports,.functions,.gitattributes,.gitconfig,.gitignore,.inputrc,.path,.templates,.vimrc,.wgetrc,.curlrc,.vim} ~ && source ~/.bashrc"
 
+# Tmux
+# https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices
+alias tmx="tmux -CC new -A -s main"
+# SSH DevDesktop with tmux
+alias tmxssh="ssh -t $USER@$USER.aka.corp.amazon.com '/apollo/env/envImprovement/bin/tmux -u -CC new -A -s main'"
+# SSH DevDesktop
+alias sshdesk="ssh -t $USER@$USER.aka.corp.amazon.com"
+
 # Open editor to edit dotfiles
-alias editdotfiles="atom $DOT_FILES_PATH"
-
-# Install apm packages list
-alias installapmpackages="apm install --packages-file $APM_LIST_FILE"
-
-# Save a-bpm packages list
-alias updateapmpackagelist="apm list --installed --bare > $APM_LIST_FILE && cat $APM_LIST_FILE"
+alias editdotfiles="code $DOT_FILES_PATH"
 
 
 ### Amazon ###
