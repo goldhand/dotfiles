@@ -221,12 +221,20 @@
 
 [user]
 	name = Will Farley
-	email = wfarley@amazon.com
-
-[amazon]
-	append-cr-url = true
-	pull-request-by-default = true
-	pull-request-using-local-branch-name = true
 
 [gpg]
 	program = gpg
+
+# https://git-scm.com/docs/git-config#_includes
+[include]
+	path = .gitinclude/secret.inc
+
+# amazon (default)
+[include]
+	path = .gitinclude/amazon.inc
+
+# personal (overrides)
+[includeIf "gitdir:~/personal/"]
+	path = .gitinclude/personal.inc
+[includeIf "gitdir:~/presents/"]
+	path = .gitinclude/personal.inc

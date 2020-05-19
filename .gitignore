@@ -19,3 +19,8 @@ build
 # Intellij
 *.iml
 *.idea/*
+
+
+# Secret stuff
+.bash_secrets
+.gitinclude/secret.inc

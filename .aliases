@@ -153,7 +153,7 @@ alias reload="exec $SHELL -l"
 alias isortproject="isort -rc --atomic"
 
 # Copy all the dotfiles I use into the home directory
-alias updatedotfiles="cp -r $DOT_FILES_PATH/{.aliases,.bash_profile,.bash_prompt,.bash_utils,.bashrc,.curlrc,.editorconfig,.exports,.functions,.gitattributes,.gitconfig,.gitignore,.inputrc,.path,.templates,.vimrc,.wgetrc,.curlrc,.vim} ~ && source ~/.bashrc"
+alias updatedotfiles="cp -r $DOT_FILES_PATH/{.aliases,.bash_profile,.bash_prompt,.bash_utils,.bashrc,.curlrc,.editorconfig,.exports,.functions,.gitattributes,.gitconfig,.gitignore,.gitinclude,.inputrc,.path,.templates,.vimrc,.wgetrc,.curlrc,.vim,.bash_secrets} ~ && source ~/.bashrc"
 
 # Tmux
 # https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices
