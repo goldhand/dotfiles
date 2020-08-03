@@ -419,7 +419,7 @@ EOF
 function aws-goshawk-login() {
 	eval "$(pyenv init -)"
 	source ~/env/bin/activate
-	export AWS_PROFILE="${2:wfarleyCli}"
+	export AWS_PROFILE="${2:-"wfarleyCli"}"
 	aws goshawk get-login --package-manager npm --domain-name amazon --repository "${1:-"shared"}" --execute
 	npm config get registry
 }
