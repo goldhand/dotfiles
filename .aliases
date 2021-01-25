@@ -185,3 +185,6 @@ alias odin_tunnel='ssh -fNL 2009:localhost:2009 wfarley.aka.corp.amazon.com'
 # code review shortcuts
 alias craplus="post-review -o -uaplus-mantle -i$APLUS_PEOPLE --testing-done='npm t, localDebug=1'"
 alias crsspaa="post-review -o -usspaa-dev -i$SSPAA_PEOPLE --testing-done='npm t, localDebug=1'"
+
+# kinit & mwinit
+alias init="kinit -f && mwinit -o"

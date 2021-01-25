@@ -147,7 +147,8 @@ function server() {
 	sleep 1 && open "http://localhost:${port}/" &
 	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
 	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
-	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
+	# python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
+	python3 -m http.server
 }
 
 # Start a PHP server from a directory, optionally specifying the port
@@ -419,10 +420,28 @@ EOF
 function aws-goshawk-login() {
 	eval "$(pyenv init -)"
 	source ~/env/bin/activate
-	export AWS_PROFILE="${2:-"wfarleyCli"}"
-	aws goshawk get-login --package-manager npm --domain-name amazon --repository "${1:-"shared"}" --execute
+	export AWS_PROFILE="${1:-"wfarleyCli"}"
+	cp ~/.npmrc ~/.npmrc_public # backup previous .npmrc config because goshawk don't give a f*** about that
+	aws goshawk get-login --package-manager npm --domain-name amazon --repository "${2:-"shared"}" --execute
 	npm config get registry
 }
 function aws-goshawk-logout() {
-	echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
+	cp ~/.npmrc_public ~/.npmrc
+	npm config get registry
+}
+
+function meme-list() {
+	curl https://memegen.link/api/templates/ | jq '.'
+}
+
+function lsdo() {
+	local lsdir="$1"
+	local lscmd="$2"
+	local lscmd1="$3"
+	local filelist="$(ls $lsdir)"
+	if [ "$#" -gt 2 ]; then
+		for file in $filelist; do "$lscmd" "$file" "${file}${lscmd1}"; done
+	else
+		for file in $filelist; do "$lscmd" "$file"; done
+	fi;
 }
