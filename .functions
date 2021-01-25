@@ -438,9 +438,10 @@ function lsdo() {
 	local lsdir="$1"
 	local lscmd="$2"
 	local lscmd1="$3"
+	local lscmd2="$4"
 	local filelist="$(ls $lsdir)"
 	if [ "$#" -gt 2 ]; then
-		for file in $filelist; do "$lscmd" "$file" "${file}${lscmd1}"; done
+		for file in $filelist; do "$lscmd" "$file" "${lscmd1}${file}${lscmd2}"; done
 	else
 		for file in $filelist; do "$lscmd" "$file"; done
 	fi;
