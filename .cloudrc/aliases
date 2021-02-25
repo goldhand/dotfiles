@@ -25,4 +25,4 @@ alias vim='/apollo/env/envImprovement/bin/vim'
 alias register_with_aaa="/apollo/env/AAAWorkspaceSupport/bin/register_with_aaa.py"
 
 # Copy all the dotfiles I use into the home directory
-alias updatedotfiles="cp -r $DOT_FILES_PATH/{.zshrc,.zsh_secrets,.cloudrc,.editorconfig,.gitattributes,.gitconfig,.gitignore,.gitinclude,.vimrc,.wgetrc,.curlrc,.vim} ~ && source ~/.zshrc"
+alias updatedotfiles="cp -r $HOME/tools/dotfiles/{.zshrc,.zsh_secrets,.cloudrc,.vimrc-cloud,.editorconfig,.gitattributes,.gitconfig,.gitignore,.gitinclude,.wgetrc,.curlrc,.vim} ~ && source ~/.zshrc"

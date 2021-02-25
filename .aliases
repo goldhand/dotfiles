@@ -152,7 +152,7 @@ alias reload="exec $SHELL -l"
 alias isortproject="isort -rc --atomic"
 
 # Copy all the dotfiles I use into the home directory
-alias updatedotfiles="cp -r $DOT_FILES_PATH/{.aliases,.bash_profile,.bash_prompt,.bash_utils,.bashrc,.curlrc,.editorconfig,.exports,.functions,.gitattributes,.gitconfig,.gitignore,.gitinclude,.inputrc,.path,.templates,.vimrc,.wgetrc,.curlrc,.vim,.bash_secrets} ~ && source ~/.bashrc"
+alias updatedotfiles="cp -r $DOT_FILES_PATH/{.aliases,.bash_profile,.bash_prompt,.bash_utils,.bashrc,.curlrc,.editorconfig,.exports,.functions,.gitattributes,.gitconfig,.gitignore,.gitinclude,.inputrc,.path,.templates,.vimrc,.wgetrc,.curlrc,.vim,.tmux.conf,.bash_secrets} ~ && source ~/.bashrc"
 
 # Tmux
 # https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices
@@ -187,3 +187,5 @@ alias cr1="cr --parent=HEAD^"
 
 # kinit & mwinit
 alias init="kinit -f && mwinit -o"
+
+alias tmux="TERM=screen-256color-bce tmux"

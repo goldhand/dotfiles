@@ -1,16 +1,14 @@
 # This is used by cloud desktop instead of .bashrc
 
 source /apollo/env/envImprovement/var/zshrc
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
+
 
 # Add `$HOME/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 
-
 # Shell dot files specifically for cloud desktop
+source $HOME/.cloudrc/path
+source $HOME/.cloudrc/exports
 for file in $(ls $HOME/.cloudrc); do
 	[ -r $HOME/.cloudrc/$file ] && [ -f $HOME/.cloudrc/$file ] && source $HOME/.cloudrc/$file;
 done;
