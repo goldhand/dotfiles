@@ -1,0 +1,26 @@
+
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
+export PATH=/apollo/env/envImprovement/bin/:$PATH
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Dot files path
+export DOT_FILES_PATH="$HOME/tools/dotfiles"
+
+export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
+
+for f in SDETools envImprovement AmazonAwsCli OdinTools; do
+    if [[ -d /apollo/env/$f ]]; then
+        export PATH=$PATH:/apollo/env/$f/bin
+    fi
+done
+
+export AUTO_TITLE_SCREENS="NO"
+
+export PROMPT="
+%{$fg[white]%}(%D %*) <%?> [%~] $program %{$fg[default]%}
+%{$fg[cyan]%}%m %#%{$fg[default]%} "
+
+export RPROMPT=

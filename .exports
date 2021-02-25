@@ -41,7 +41,7 @@ export NOTES_DIR=$HOME/notes/notes
 export NOTES_EDITOR=atom
 
 # NVM Directory
-export NVM_DIR="/Users/$USER/.nvm"
+export NVM_DIR="$HOME/.nvm"
 
 # Dot files path
 export DOT_FILES_PATH="$HOME/tools/dotfiles"

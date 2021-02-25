@@ -239,6 +239,10 @@
 [include]
 	path = .gitinclude/amazon.inc
 
+# amazon cloud (uses /home/$USER)
+[includeIF "gitdir:/home/wfarley"]
+	path = .gitinclude/amazon-cloud.inc
+
 # personal (overrides)
 [includeIf "gitdir:~/personal/"]
 	path = .gitinclude/personal.inc
