@@ -455,6 +455,14 @@ function aws-goshawk-logout() {
 }
 
 # Code Review
+
+# Last commit with cr
+function lastcr() {
+	C_INDEX="${1:-0}"
+	CR_PREFIX_GREP="${2:-$CR_PREFIX}"
+	git log -n 1 "HEAD~$C_INDEX" --pretty=%B | grep "^.*${CR_PREFIX_GREP}" | cut -d - -f 2
+}
+
 ## Existing code review new revision (inculudes all new commits and commits since last cr)
 function crr() {
 	if [ -z "$CR_PREFIX" ]
@@ -462,22 +470,20 @@ function crr() {
 		echo "No CR_PREFIX. Set CR_PREFIX env variable"
 		return
 	fi
+
 	START_COMMIT_INDEX=0
 	COMMIT_INDEX=$START_COMMIT_INDEX
-	CR_ID="$(git log -n 1 "HEAD~$COMMIT_INDEX" --pretty=%B | grep "^cr: $CR_PREFIX.*$" | cut -d - -f 2)"
-
+	CR_ID=$(lastcr $COMMIT_INDEX)
 	while [ -z "$CR_ID" ]
 	do
-		if [ "$COMMIT_INDEX" -gt $((START_COMMIT_INDEX + 10)) ]
+		if [ "$COMMIT_INDEX" -gt $(( START_COMMIT_INDEX + 10 )) ]
 		then
 			echo "Could not find commit with code review message"
 			# Give up after 10 commits
 			return
 		fi
-
 		COMMIT_INDEX=$(( COMMIT_INDEX + 1 ))
-		CR_ID="$(git log -n 1 "HEAD~$COMMIT_INDEX" --pretty=%B | grep "^cr: $CR_PREFIX.*$" | cut -d - -f 2)"
-
+		CR_ID=$(lastcr $COMMIT_INDEX)
 		if [ -z "$CR_ID" ]
 		then
 			# Check next commit
@@ -489,20 +495,18 @@ function crr() {
 	done
 
 	PARENT_COMMIT_INDEX=$(( COMMIT_INDEX + 1 ))
-	PARENT_CR_ID="$(git log -n 1 "HEAD~$PARENT_COMMIT_INDEX" --pretty=%B | grep "^cr: $CR_PREFIX.*$" | cut -d - -f 2)"
+	PARENT_CR_ID=$(lastcr $PARENT_COMMIT_INDEX)
 	while [ -z "$PARENT_CR_ID" ]
 	do
-		if [ "$PARENT_COMMIT_INDEX" -gt $((COMMIT_INDEX + 10)) ]
+		if [ "$PARENT_COMMIT_INDEX" -gt $(( COMMIT_INDEX + 10 )) ]
 		then
 			# Give up looking for parent after 10 commits (but don't exit)
 			# Reset to last cr commit + 1
 			PARENT_COMMIT_INDEX=$(( COMMIT_INDEX + 1 ))
 			break
 		fi
-
 		PARENT_COMMIT_INDEX=$(( PARENT_COMMIT_INDEX + 1 ))
-		PARENT_CR_ID="$(git log -n 1 "HEAD~$PARENT_COMMIT_INDEX" --pretty=%B | grep "^cr: $CR_PREFIX.*$" | cut -d - -f 2)"
-
+		PARENT_CR_ID=$(lastcr $PARENT_COMMIT_INDEX)
 		if [ -z "$PARENT_CR_ID" ]
 		then
 			continue
