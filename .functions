@@ -416,23 +416,6 @@ EOF
 	rm $NOTES_DIR/$QUIT
 }
 
-# goshawk
-function aws-goshawk-login() {
-	eval "$(pyenv init -)"
-	source ~/env/bin/activate
-	export AWS_PROFILE="${1:-"wfarleyCli"}"
-	cp ~/.npmrc ~/.npmrc_public # backup previous .npmrc config because goshawk don't give a f*** about that
-	aws goshawk get-login --package-manager npm --domain-name amazon --repository "${2:-"shared"}" --execute
-	npm config get registry
-}
-function aws-goshawk-logout() {
-	cp ~/.npmrc_public ~/.npmrc
-	npm config get registry
-}
-
-function meme-list() {
-	curl https://memegen.link/api/templates/ | jq '.'
-}
 
 function lsdo() {
 	local lsdir="$1"
@@ -445,4 +428,96 @@ function lsdo() {
 	else
 		for file in $filelist; do "$lscmd" "$file"; done
 	fi;
+}
+
+function meme-list() {
+	curl https://memegen.link/api/templates/ | jq '.'
+}
+
+# goshawk
+function aws-goshawk-login() {
+	eval "$(pyenv init -)"
+	# shellcheck disable=SC1091
+	source "$HOME/env/bin/activate"
+	export AWS_PROFILE="${1:-"$DEFAULT_AWS_PROFILE"}"
+	if [ -z "$AWS_PROFILE" ]
+	then
+		echo "No aws profile argument or DEFAULT_AWS_PROFILE variable. Set DEFAULT_AWS_PROFILE env variable"
+		return
+	fi
+	cp ~/.npmrc ~/.npmrc_public # backup previous .npmrc config because goshawk don't give a f*** about that
+	aws goshawk get-login --package-manager npm --domain-name amazon --repository "${2:-"shared"}" --execute
+	npm config get registry
+}
+function aws-goshawk-logout() {
+	cp ~/.npmrc_public ~/.npmrc
+	npm config get registry
+}
+
+# Code Review
+## Existing code review new revision (inculudes all new commits and commits since last cr)
+function crr() {
+	if [ -z "$CR_PREFIX" ]
+	then
+		echo "No CR_PREFIX. Set CR_PREFIX env variable"
+		return
+	fi
+	START_COMMIT_INDEX=0
+	COMMIT_INDEX=$START_COMMIT_INDEX
+	CR_ID="$(git log -n 1 "HEAD~$COMMIT_INDEX" --pretty=%B | grep "^cr: $CR_PREFIX.*$" | cut -d - -f 2)"
+
+	while [ -z "$CR_ID" ]
+	do
+		if [ "$COMMIT_INDEX" -gt $((START_COMMIT_INDEX + 10)) ]
+		then
+			echo "Could not find commit with code review message"
+			# Give up after 10 commits
+			return
+		fi
+
+		COMMIT_INDEX=$(( COMMIT_INDEX + 1 ))
+		CR_ID="$(git log -n 1 "HEAD~$COMMIT_INDEX" --pretty=%B | grep "^cr: $CR_PREFIX.*$" | cut -d - -f 2)"
+
+		if [ -z "$CR_ID" ]
+		then
+			# Check next commit
+			continue
+		else
+			# Found last CR_ID
+			break
+		fi
+	done
+
+	PARENT_COMMIT_INDEX=$(( COMMIT_INDEX + 1 ))
+	PARENT_CR_ID="$(git log -n 1 "HEAD~$PARENT_COMMIT_INDEX" --pretty=%B | grep "^cr: $CR_PREFIX.*$" | cut -d - -f 2)"
+	while [ -z "$PARENT_CR_ID" ]
+	do
+		if [ "$PARENT_COMMIT_INDEX" -gt $((COMMIT_INDEX + 10)) ]
+		then
+			# Give up looking for parent after 10 commits (but don't exit)
+			# Reset to last cr commit + 1
+			PARENT_COMMIT_INDEX=$(( COMMIT_INDEX + 1 ))
+			break
+		fi
+
+		PARENT_COMMIT_INDEX=$(( PARENT_COMMIT_INDEX + 1 ))
+		PARENT_CR_ID="$(git log -n 1 "HEAD~$PARENT_COMMIT_INDEX" --pretty=%B | grep "^cr: $CR_PREFIX.*$" | cut -d - -f 2)"
+
+		if [ -z "$PARENT_CR_ID" ]
+		then
+			continue
+		else
+			break
+		fi
+	done
+
+	CR_CMD=${1:-"cr --parent=HEAD~$(( PARENT_COMMIT_INDEX ))"}
+	$CR_CMD -r "$CR_ID"
+}
+
+# Cloud Desktop
+
+# Download from remote
+function download() {
+	rsync -a "$USER@$REMOTE_DESKTOP_URL:/home/$USER/$1" "$2"
 }

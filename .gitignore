@@ -23,4 +23,5 @@ build
 
 # Secret stuff
 .bash_secrets
+.zsh_secrets
 .gitinclude/secret.inc

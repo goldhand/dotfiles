@@ -35,7 +35,6 @@ alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 alias ls="command ls ${colorflag}"
 export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
 
-
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
 alias grep='grep --color=auto'
@@ -146,7 +145,7 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Reload the shell (i.e. invoke as a login shell)
-alias reload="exec $SHELL -l"
+alias reload='exec $SHELL -l'
 
 # Atomically run isort against a project, only applying changes if they don’t introduce syntax errors
 alias isortproject="isort -rc --atomic"
@@ -155,12 +154,9 @@ alias isortproject="isort -rc --atomic"
 alias updatedotfiles="cp -r $DOT_FILES_PATH/{.aliases,.bash_profile,.bash_prompt,.bash_utils,.bashrc,.curlrc,.editorconfig,.exports,.functions,.gitattributes,.gitconfig,.gitignore,.gitinclude,.inputrc,.path,.templates,.vimrc,.wgetrc,.curlrc,.vim,.tmux.conf,.bash_secrets} ~ && source ~/.bashrc"
 
 # Tmux
+alias tmux="TERM=screen-256color-bce tmux"
 # https://gitlab.com/gnachman/iterm2/-/wikis/tmux-Integration-Best-Practices
 alias tmx="tmux -CC new -A -s main"
-# SSH DevDesktop with tmux
-alias tmxssh="ssh -t $USER@$USER.aka.corp.amazon.com '/apollo/env/envImprovement/bin/tmux -u -CC new -A -s main'"
-# SSH DevDesktop
-alias sshdesk="ssh -t $USER@$USER.aka.corp.amazon.com"
 
 # Open editor to edit dotfiles
 alias editdotfiles="code $DOT_FILES_PATH"
@@ -168,24 +164,47 @@ alias editdotfiles="code $DOT_FILES_PATH"
 
 ### Amazon ###
 
+# Cloud
+
+# SSH DevDesktop with tmux
+alias tmxssh="ssh -t $USER@$USER.aka.corp.amazon.com '/apollo/env/envImprovement/bin/tmux -u -CC new -A -s main'"
+# SSH cloud desktop
+alias sshcloud="ssh -t $USER@$USER.aka.corp.amazon.com"
+
+# Brazil
+
 # Brazil-build
 alias bb="brazil-build"
-
 alias bbb="brazil-recursive-cmd --allPackages brazil-build"
+alias bba="brazil-build apollo-pkg"
+alias bre="brazil-runtime-exec"
+alias brc="brazil-recursive-cmd"
+alias bws="brazil ws"
+alias bwsuse="bws use --gitMode -p"
+alias bwscreate="bws create -n"
+alias bbr="brc brazil-build"
+alias bball="brc --allPackages"
+alias bbb="brc --allPackages brazil-build"
+alias bbra="bbr apollo-pkg"
 
 # Connect to backup server
-alias mount_backup_server="mount -t smbfs //wfarley@ant.amazon.com/home/sea/009/wfarley ./backup/"
+alias mount_backup_server='mount -t smbfs //$USER@ant.amazon.com/home/sea/009/$USER ./backup/'
 
 # Backup rsync shortcut
 alias rsync_backup="rsync -trv"
 
-alias odin_tunnel='ssh -fNL 2009:localhost:2009 wfarley.aka.corp.amazon.com'
+alias odin_tunnel='ssh -fNL 2009:localhost:2009 $REMOTE_DESKTOP_URL'
 
-# code review shortcuts
-alias craplus="post-review -o -uaplus-mantle -i$APLUS_PEOPLE --testing-done='npm t, localDebug=1'"
+# Code Review
+
+## New code review
+alias crn="cr --new-review"
+## Code review only last commit
 alias cr1="cr --parent=HEAD^"
+## New code review only last commit
+alias cr1n="cr1 --new-review"
+## Existing code review new revision (inculudes all new commits and commits since last cr)
+## (see .functions)
 
 # kinit & mwinit
 alias init="kinit -f && mwinit -o"
-
-alias tmux="TERM=screen-256color-bce tmux"

@@ -1,20 +1,5 @@
-
-
 alias e=emacs
 alias bb=brazil-build
-
-alias bba='brazil-build apollo-pkg'
-alias bre='brazil-runtime-exec'
-alias brc='brazil-recursive-cmd'
-alias bws='brazil ws'
-alias bwsuse='bws use --gitMode -p'
-alias bwscreate='bws create -n'
-alias brc=brazil-recursive-cmd
-alias bbr='brc brazil-build'
-alias bball='brc --allPackages'
-alias bbb='brc --allPackages brazil-build'
-alias bbra='bbr apollo-pkg'
-
 
 alias brazil-octane='/apollo/env/OctaneBrazilTools/bin/brazil-octane'
 alias third-party-promote='~/.toolbox/bin/brazil-third-party-tool promote'
@@ -25,4 +10,4 @@ alias vim='/apollo/env/envImprovement/bin/vim'
 alias register_with_aaa="/apollo/env/AAAWorkspaceSupport/bin/register_with_aaa.py"
 
 # Copy all the dotfiles I use into the home directory
-alias updatedotfiles="cp -r $HOME/tools/dotfiles/{.zshrc,.zsh_secrets,.cloudrc,.vimrc-cloud,.editorconfig,.gitattributes,.gitconfig,.gitignore,.gitinclude,.wgetrc,.curlrc,.vim} ~ && source ~/.zshrc"
+alias updatedotfiles="cp -r $HOME/tools/dotfiles/{.zshrc,.zsh_secrets,.aliases,.functions,.cloudrc,.vimrc-cloud,.editorconfig,.gitattributes,.gitconfig,.gitignore,.gitinclude,.wgetrc,.curlrc,.vim} ~ && source ~/.zshrc"

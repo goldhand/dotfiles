@@ -1,29 +1,22 @@
 # This is used by cloud desktop instead of .bashrc
-
 source /apollo/env/envImprovement/var/zshrc
+source $HOME/.zsh_secrets
 
-
-# Add `$HOME/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
-
-# Shell dot files specifically for cloud desktop
+# Source required dotfiles first (they will be sourced again after common dot files)
 source $HOME/.cloudrc/path
 source $HOME/.cloudrc/exports
+
+# Source common dot files
+source $HOME/.aliases
+source $HOME/.functions
+
+# Shell dot files specifically for cloud desktop
+# After common dot files for overrides
 for file in $(ls $HOME/.cloudrc); do
 	[ -r $HOME/.cloudrc/$file ] && [ -f $HOME/.cloudrc/$file ] && source $HOME/.cloudrc/$file;
 done;
 unset file;
 
 if [ -f $HOME/.zshrc-dev-dsk-post ]; then
-    source $HOME/.zshrc-dev-dsk-post
-fi
-
-
-NO_TMUX=${NO_TMUX:-false}
-echo 'shell: zsh'
-echo "TMUX?"
-if [ "$NO_TMUX" != true ]; then
-    echo "Yes TMUX!";
- else
-    echo "No TMUX";
+	source $HOME/.zshrc-dev-dsk-post
 fi
